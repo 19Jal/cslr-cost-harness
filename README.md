@@ -35,7 +35,7 @@ that produced it. The rules are in [docs/protocol.md](docs/protocol.md).
 
 ## Supported devices and pipelines
 
-**Devices:** NVIDIA Jetson Orin (INA3221 power rails) and x86 desktops with an
+**Devices:** NVIDIA Jetson Orin Nano (INA3221 power rails) and x86 desktops with an
 NVIDIA GPU (NVML for the GPU, Intel RAPL for the CPU package). See
 [docs/devices.md](docs/devices.md).
 
