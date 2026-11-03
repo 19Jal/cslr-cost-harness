@@ -1,0 +1,54 @@
+[project]
+name = "cslr-cost-harness"
+version = "0.1.0"
+description = "Whole-pipeline cost measurement for continuous sign language recognition"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = "==3.10.13"
+dependencies = [
+    "einops>=0.8.2",
+    # Upper bounds are load-bearing, not cosmetic. torch 2.0.0 is built against
+    # the NumPy 1.x C API: with NumPy >=2 installed, torch<->numpy interop fails
+    # outright ("RuntimeError: Numpy is not available" from .numpy() and
+    # from_numpy). Every harness stage boundary crosses that line, so an
+    # unbounded ">=1.24.3" silently resolves to 2.x and breaks the pipeline.
+    "numpy>=1.24.3,<2",
+    "nvidia-ml-py>=13.610.43",
+    "opencv-python>=4.8.1.78,<5",
+    "psutil>=7.2.2",
+    "pyyaml>=6.0.3",
+    "torch==2.0.0",
+    "torchvision>=0.15.1",
+    "tqdm>=4.70.0",
+]
+
+[project.scripts]
+harness = "cslr_cost.harness.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13.0"]
+build-backend = "uv_build"
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu118" }
+torchvision = { index = "pytorch-cu118" }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Tests import the installed package (src layout), never a path-relative copy,
+# so a green run proves the harness works from anywhere — including from
+# a native install on the edge devices.
+addopts = "-q"
+
+[tool.uv.build-backend]
+module-name = "cslr_cost"

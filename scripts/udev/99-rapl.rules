@@ -1,0 +1,20 @@
+# Make Intel RAPL energy counters readable by the "users" group.
+#
+# Why this is needed: since CVE-2020-8694 (PLATYPUS) the kernel ships
+# /sys/class/powercap/intel-rapl:*/energy_uj as 0400 root-only. The harness
+# needs CPU-package energy for the decode / crop / postproc stages, which are
+# CPU-bound and therefore invisible on the NVML (GPU) rail.
+#
+# Scope: group-readable, not world-readable. PLATYPUS recovers secrets from
+# power traces, so on a shared lab machine this should stay narrow.
+#
+# Install:
+#   sudo cp scripts/udev/99-rapl.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules && sudo udevadm trigger --subsystem-match=powercap
+#
+# Verify:
+#   cat /sys/class/powercap/intel-rapl:0/energy_uj
+
+SUBSYSTEM=="powercap", ACTION=="add|change", \
+  RUN+="/bin/chgrp -R users /sys/devices/virtual/powercap/intel-rapl", \
+  RUN+="/bin/chmod -R g+r /sys/devices/virtual/powercap/intel-rapl"

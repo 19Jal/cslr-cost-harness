@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this harness, please cite the paper below."
+title: "cslr-cost-harness"
+type: software
+license: Apache-2.0
+authors:
+  - family-names: Veda
+    given-names: Jalu
+  - family-names: Cahyafazri
+    given-names: Muhammad Rafi
+  - family-names: Leu
+    given-names: Jenq-Shiou
+preferred-citation:
+  type: article
+  title: "The Hidden Cost of Pose: Whole-Pipeline Measurement of Keypoint-Based Continuous Sign Language Recognition"
+  authors:
+    - family-names: Veda
+      given-names: Jalu
+    - family-names: Cahyafazri
+      given-names: Muhammad Rafi
+    - family-names: Leu
+      given-names: Jenq-Shiou
+  year: 2026
+  notes: "Under review."

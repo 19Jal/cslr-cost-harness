@@ -1,0 +1,30 @@
+cslr-cost-harness
+Copyright 2026 Jalu Veda, Muhammad Rafi Cahyafazri and Jenq-Shiou Leu
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product includes code adapted from the following projects.
+
+1. VAC_CSLR (VIPL-SLP/VAC_CSLR, commit 71f3e03)
+   Copyright 2020 Key Lab of Intelligent Information Processing of Chinese
+   Academy of Sciences. Licensed under the Apache License, Version 2.0.
+   Adapted in: src/cslr_cost/rgb_cslr/models.py (the VAC and VAC + SMKD
+   network definitions, ported for inference and export; training paths removed).
+
+2. MMPose (open-mmlab/mmpose, v1.3.2)
+   Copyright (c) OpenMMLab. Licensed under the Apache License, Version 2.0.
+   Adapted in: src/cslr_cost/harness/stages/crop.py (`bbox_xyxy2cs`,
+   `get_warp_matrix` and the aspect-ratio fix, copied so the crop geometry
+   matches the checkpoints without installing OpenMMLab on the device).
+
+3. MMDetection (open-mmlab/mmdetection, v3.2.0)
+   Copyright (c) OpenMMLab. Licensed under the Apache License, Version 2.0.
+   Re-implemented in: src/cslr_cost/harness/stages/detect_trt.py (RTMDet's
+   box decoding and NMS, following `_predict_by_feat_single`).
+
+Not included, and used only from your own copy at run time:
+  - MSKA (its scorer `metrics.py`, `phoenix_cleanup.py` and its model code),
+  - TwoStream-SLR / SLRT (its model code, for export),
+  - CorrNet (no licence; see docs/adding-a-pipeline.md),
+  - PHOENIX-2014, COCO-WholeBody and every released checkpoint.
+Each is subject to its own authors' terms.
