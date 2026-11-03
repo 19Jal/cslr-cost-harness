@@ -1,22 +1,29 @@
 # cslr-cost-harness
 
-Whole-pipeline cost measurement for continuous sign language recognition (CSLR):
-time, energy and memory for **every stage between the encoded video and the
-glosses**, on the device that would run them.
+A measurement tool for the **costs and gains** of continuous sign language
+recognition (CSLR) pipelines. It measures what every stage between the encoded
+video and the glosses costs (time, energy and memory, on the device that would
+run them), and what the pipeline gains (word error rate), under one protocol and
+one scorer, so that pipelines from any model family can be compared fairly.
 
-Most CSLR papers report the cost of the recognition network alone. For a
-keypoint model that leaves out the pose estimator, which runs on every frame and
-is usually the largest cost in the pipeline. This harness counts the whole
-pipeline, the same way, for keypoint, RGB and two-stream models:
+Reported cost figures in CSLR usually cover only part of a pipeline, and which
+part differs between model families: an RGB model's figure includes its CNN
+backbone, while a keypoint model's usually starts after the pose estimator. This
+harness counts every stage, the same way, for keypoint, RGB and two-stream
+pipelines, and keeps accuracy beside cost.
 
-```
-for each frame:  decode -> detect -> crop -> pose (or CNN) -> postproc
-once per clip:   head -> CTC decode
-```
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/pipeline-dark.svg">
+    <img alt="The seven pipeline stages, per frame (decode, detect, crop, pose or CNN, postproc) and per clip (head, CTC). Costs are measured per stage: time inside the running pipeline, energy and memory by replaying each stage alone, guarded by an idle bracket and a contention gate, in batch, live, sustained and first-gloss regimes. Gains are measured per pipeline as WER with deletions, substitutions and insertions. Every measurement is one JSONL row." src="docs/assets/pipeline-light.svg" width="900">
+  </picture>
+</p>
 
 It is the measurement tool behind *The Hidden Cost of Pose: Whole-Pipeline
 Measurement of Keypoint-Based Continuous Sign Language Recognition* (see
-[Citing](#citing)).
+[Citing](#citing)), but nothing in it is specific to one model: any pipeline that
+can be split into these stages can be measured
+([docs/adding-a-pipeline.md](docs/adding-a-pipeline.md)).
 
 ## What it measures
 
@@ -39,7 +46,7 @@ that produced it. The rules are in [docs/protocol.md](docs/protocol.md).
 NVIDIA GPU (NVML for the GPU, Intel RAPL for the CPU package). See
 [docs/devices.md](docs/devices.md).
 
-**Pipelines measured in the paper** (released checkpoints, TensorRT FP32/FP16):
+**Pipelines with adapters included** (released checkpoints, TensorRT FP32/FP16). These are the ones used in the paper; add your own with [docs/adding-a-pipeline.md](docs/adding-a-pipeline.md).
 
 | Family | Pipeline | Front end | How to get it |
 |---|---|---|---|
@@ -103,7 +110,7 @@ isolates, paces and reconciles it like the built-in ones.
 | `src/cslr_cost/rgb_cslr/` | VAC port, data loading and WER for the RGB and two-stream models |
 | `src/cslr_cost/ladder/` | Resolution-ladder cataloguing and the guard that refuses WER on resampled input |
 | `scripts/` | Container wrapper, ladder generation, example session |
-| `docs/` | Protocol, devices, data layout, adding a pipeline |
+| `docs/` | Protocol, devices, data layout, adding a pipeline; `docs/assets/` holds the diagram and the script that draws it |
 | `tests/` | Unit tests (synthetic stages with known cost), plus GPU and data tests that skip when absent |
 
 ## Status

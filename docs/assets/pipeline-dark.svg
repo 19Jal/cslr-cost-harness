@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6e7681"/></marker></defs>
+<rect x="24.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#161b22" stroke="#3d444d" stroke-width="1.2"/>
+<text x="74.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">decode</text>
+<text x="74.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">CPU</text>
+<rect x="142.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#161b22" stroke="#3d444d" stroke-width="1.2"/>
+<text x="192.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">detect</text>
+<text x="192.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">optional</text>
+<rect x="260.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#161b22" stroke="#3d444d" stroke-width="1.2"/>
+<text x="310.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">crop</text>
+<text x="310.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">CPU</text>
+<rect x="378.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#3d2310" stroke="#f0883e" stroke-width="1.8"/>
+<text x="428.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">pose / CNN</text>
+<text x="428.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">GPU</text>
+<rect x="496.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#161b22" stroke="#3d444d" stroke-width="1.2"/>
+<text x="546.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">postproc</text>
+<text x="546.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">CPU</text>
+<rect x="658.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#161b22" stroke="#3d444d" stroke-width="1.2"/>
+<text x="708.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">head</text>
+<text x="708.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">GPU</text>
+<rect x="776.0" y="58.0" width="100.0" height="62.0" rx="8" fill="#161b22" stroke="#3d444d" stroke-width="1.2"/>
+<text x="826.0" y="86.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">CTC</text>
+<text x="826.0" y="105.0" fill="#9198a1" font-size="12" font-weight="400" text-anchor="middle">CPU</text>
+<line x1="126.0" y1="89.0" x2="139.0" y2="89.0" stroke="#6e7681" stroke-width="1.4" marker-end="url(#a)"/>
+<line x1="244.0" y1="89.0" x2="257.0" y2="89.0" stroke="#6e7681" stroke-width="1.4" marker-end="url(#a)"/>
+<line x1="362.0" y1="89.0" x2="375.0" y2="89.0" stroke="#6e7681" stroke-width="1.4" marker-end="url(#a)"/>
+<line x1="480.0" y1="89.0" x2="493.0" y2="89.0" stroke="#6e7681" stroke-width="1.4" marker-end="url(#a)"/>
+<line x1="598.0" y1="89.0" x2="655.0" y2="89.0" stroke="#6e7681" stroke-width="1.4" marker-end="url(#a)"/>
+<line x1="760.0" y1="89.0" x2="773.0" y2="89.0" stroke="#6e7681" stroke-width="1.4" marker-end="url(#a)"/>
+<text x="627.0" y="80.0" fill="#9198a1" font-size="11" font-weight="400" text-anchor="middle">assemble</text>
+<path d="M24.0,48 L24.0,40 L596.0,40 L596.0,48" fill="none" stroke="#6e7681" stroke-width="1.2"/>
+<text x="310.0" y="31.0" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">per frame: every frame of the video</text>
+<path d="M658.0,48 L658.0,40 L876.0,40 L876.0,48" fill="none" stroke="#6e7681" stroke-width="1.2"/>
+<text x="767.0" y="31.0" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">per clip</text>
+<text x="24.0" y="142.0" fill="#9198a1" font-size="11.5" font-weight="600" text-anchor="start">COSTS, per stage</text>
+<rect x="24.0" y="148.0" width="852.0" height="54.0" rx="8" fill="#0d2346" stroke="#388bfd" stroke-width="1.2"/>
+<text x="40.0" y="169.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="start">Time: every stage timed inside the running pipeline</text>
+<text x="40.0" y="188.0" fill="#9198a1" font-size="12.5" font-weight="400" text-anchor="start">CUDA events for GPU stages · median and p95, never the mean · stages must sum to end-to-end within 5%</text>
+<rect x="24.0" y="210.0" width="852.0" height="54.0" rx="8" fill="#0f2e1b" stroke="#3fb950" stroke-width="1.2"/>
+<text x="40.0" y="231.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="start">Energy and memory: every stage replayed alone, ≥ 60 s, on its recorded inputs</text>
+<text x="40.0" y="250.0" fill="#9198a1" font-size="12.5" font-weight="400" text-anchor="start">power rails sample too slowly to split one pass · energy in total and above idle · peak device memory</text>
+<rect x="24.0" y="272.0" width="421.0" height="46.0" rx="8" fill="#271052" stroke="#a371f7" stroke-width="1.2"/>
+<text x="40.0" y="291.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="start">Idle bracket</text>
+<text x="40.0" y="309.0" fill="#9198a1" font-size="12.5" font-weight="400" text-anchor="start">20 s settle + 10 s idle, before and after the run</text>
+<rect x="455.0" y="272.0" width="421.0" height="46.0" rx="8" fill="#271052" stroke="#a371f7" stroke-width="1.2"/>
+<text x="471.0" y="291.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="start">Contention gate</text>
+<text x="471.0" y="309.0" fill="#9198a1" font-size="12.5" font-weight="400" text-anchor="start">other GPU processes or foreign CPU, every 2 s</text>
+<text x="24.0" y="344.0" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="start">Regimes</text>
+<rect x="96.0" y="328.0" width="157.9" height="26.0" rx="13" fill="#0d1117" stroke="#3d444d" stroke-width="1.2"/>
+<text x="174.9" y="345.0" fill="#e6edf3" font-size="12" font-weight="400" text-anchor="middle">batch 1 (and batch N)</text>
+<rect x="261.9" y="328.0" width="261.4" height="26.0" rx="13" fill="#0d1117" stroke="#3d444d" stroke-width="1.2"/>
+<text x="392.6" y="345.0" fill="#e6edf3" font-size="12" font-weight="400" text-anchor="middle">live: paced 25 fps, overruns counted</text>
+<rect x="531.3" y="328.0" width="130.3" height="26.0" rx="13" fill="#0d1117" stroke="#3d444d" stroke-width="1.2"/>
+<text x="596.4" y="345.0" fill="#e6edf3" font-size="12" font-weight="400" text-anchor="middle">sustained: 10 min</text>
+<rect x="669.6" y="328.0" width="144.1" height="26.0" rx="13" fill="#0d1117" stroke="#3d444d" stroke-width="1.2"/>
+<text x="741.6" y="345.0" fill="#e6edf3" font-size="12" font-weight="400" text-anchor="middle">first-gloss latency</text>
+<text x="24.0" y="382.0" fill="#9198a1" font-size="11.5" font-weight="600" text-anchor="start">GAINS, per pipeline</text>
+<rect x="24.0" y="388.0" width="852.0" height="54.0" rx="8" fill="#2e2a0f" stroke="#d29922" stroke-width="1.2"/>
+<text x="40.0" y="409.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="start">Accuracy: WER with deletions, substitutions and insertions</text>
+<text x="40.0" y="428.0" fill="#9198a1" font-size="12.5" font-weight="400" text-anchor="start">the deployed output, through the same engines · both PHOENIX-2014 conventions · never on upscaled input</text>
+<line x1="24.0" y1="462" x2="876.0" y2="462" stroke="#3d444d" stroke-width="1"/>
+<text x="450.0" y="486.0" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">→ costs and gains side by side: one JSONL row per measurement</text>
+<text x="450.0" y="506.0" fill="#9198a1" font-size="12.5" font-weight="400" text-anchor="middle">device · power mode · clocks · engines · idle · contention verdict · git commit</text>
+</svg>
